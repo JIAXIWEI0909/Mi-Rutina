@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Spanish Learning: Mi Rutina Perfecta</title>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FFF7ED;        /* Cream Background */
+    --ink: #333;          /* Dark Text */
+    --accent: #FFA94D;    /* Vibrant Orange */
+    --accent2: #FFD8A8;   /* Light Orange */
+    --card: #fff;         /* White Card */
+    --green: #2e7d32;     /* Success Green */
+    --hover: #FFF0D4;     /* Hover State */
+    --flip-bg: #e65100;   /* Back of card color */
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: 'Nunito', 'Poppins', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    padding-bottom: 60px;
+  }
+
+  header {
+    padding: 25px;
+    text-align: center;
+    background: #fff0da;
+    border-bottom: 5px solid var(--accent);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+
+  h1 {
+    margin: 0;
+    font-weight: 900;
+    color: #e65100;
+    font-size: clamp(24px, 5vw, 36px);
+    letter-spacing: 1px;
+  }
+
+  h2 {
+    color: #e65100;
+    border-left: 6px solid var(--accent);
+    padding-left: 12px;
+    margin-top: 35px;
+    margin-bottom: 15px;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+
+  /* --- Navigation Tabs --- */
+  .nav-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 25px 0;
+  }
+
+  .tab-btn {
+    border: 2px solid var(--accent);
+    padding: 10px 20px;
+    background: #fff;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 800;
+    font-family: inherit;
+    transition: all 0.2s;
+    color: var(--ink);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  }
+
+  .tab-btn:hover { background: var(--hover); transform: translateY(-2px); }
+  
+  .tab-btn.active {
+    background: var(--accent);
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(255, 169, 77, 0.4);
+  }
+
+  /* Section Control */
+  .section-content { display: none; animation: fadeIn 0.4s ease-out; }
+  .section-content.active { display: block; }
+
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* --- Cards General --- */
+  .card {
+    background: var(--card);
+    border: 2px solid var(--accent2);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    margin-bottom: 25px;
+  }
+
+  /* --- 1. Numbers --- */
+  .number-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
+    gap: 12px;
+  }
+
+  .num-card {
+    background: #fff;
+    border: 2px solid var(--accent);
+    border-radius: 12px;
+    padding: 12px 5px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.1s, background 0.2s;
+  }
+
+  .num-card:hover {
+    background: var(--accent2);
+    transform: scale(1.08);
+  }
+
+  .num-digit {
+    font-size: 24px;
+    font-weight: 900;
+    color: #e65100;
+    display: block;
+  }
+
+  .num-word {
+    font-size: 14px;
+    font-weight: 700;
+    color: #555;
+    margin-top: 5px;
+  }
+
+  /* --- 2. Time --- */
+  .time-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .clock-face {
+    width: 140px;
+    height: 140px;
+    background: #fff;
+    border: 8px solid var(--accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+
+  .rule-box {
+    background: #FFF3E0;
+    padding: 20px;
+    border-radius: 15px;
+    border-left: 5px solid #FF9800;
+    flex: 1;
+    min-width: 280px;
+  }
+
+  .rule-box p { margin: 10px 0; font-weight: 600; cursor: pointer; padding: 5px; border-radius: 8px; transition: background 0.2s; }
+  .rule-box p:hover { background: #ffe0b2; }
+
+  .grammar-note {
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 15px;
+    font-size: 0.9em;
+    color: #444;
+    border: 1px dashed #FF9800;
+  }
+
+  .grammar-note ul {
+    margin: 8px 0 0 0;
+    padding-left: 20px;
+  }
+
+  .grammar-note li {
+    margin-bottom: 8px;
+  }
+
+  .quiz-time-display {
+    font-size: 56px;
+    font-weight: 900;
+    color: #e65100;
+    margin: 20px 0;
+    letter-spacing: 2px;
+  }
+
+  .quiz-answer {
+    min-height: 40px;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--green);
+    display: none;
+    animation: fadeIn 0.3s;
+  }
+
+  /* --- 3. Vocab Grid --- */
+  .vocab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 15px;
+  }
+
+  .vocab-card {
+    background: white;
+    border-radius: 15px;
+    border: 2px solid #eee;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .vocab-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 5px 15px rgba(255, 169, 77, 0.3);
+    transform: translateY(-3px);
+  }
+
+  .emoji { font-size: 36px; margin-bottom: 10px; }
+  .es-text { font-size: 16px; font-weight: 800; color: #333; margin-bottom: 4px; }
+  .en-text { font-size: 13px; color: #888; font-style: italic; }
+
+  /* --- 4. Practice Builder --- */
+  .builder-area {
+    background: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    border: 3px dashed var(--accent);
+  }
+
+  .control-group {
+    margin-bottom: 25px;
+    text-align: left;
+    max-width: 550px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .control-label {
+    display: block;
+    font-weight: 800;
+    color: #e65100;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+  }
+
+  /* Time Display Box */
+  .time-display-box {
+    background: #FFF3E0;
+    padding: 12px;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #d35400;
+    font-size: 1.3em;
+    border: 1px solid #FFD8A8;
+  }
+  
+  .period-hint {
+    font-size: 0.7em;
+    color: #7f8c8d;
+    font-weight: normal;
+    display: block;
+    margin-top: 4px;
+  }
+
+  input[type="range"] {
+    width: 100%;
+    margin: 10px 0;
+    cursor: pointer;
+    accent-color: #e65100;
+    height: 8px;
+  }
+
+  select {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    border: 2px solid var(--accent2);
+    border-radius: 12px;
+    font-family: inherit;
+    background: white;
+    outline: none;
+    cursor: pointer;
+  }
+
+  select:focus { border-color: var(--accent); }
+
+  .action-btn {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 16px 40px;
+    border-radius: 50px;
+    font-size: 20px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 4px 0 #e65100;
+    transition: transform 0.1s;
+    margin-top: 15px;
+    width: 100%;
+    max-width: 550px;
+  }
+
+  .action-btn:active {
+    transform: translateY(4px);
+    box-shadow: 0 0 0 #e65100;
+  }
+
+  #result-box {
+    margin-top: 30px;
+    padding: 25px;
+    background: #FFF7ED;
+    border-radius: 15px;
+    min-height: 100px;
+    display: none;
+    text-align: left;
+    border-left: 6px solid #e65100;
+  }
+  
+  .res-sp { font-size: 1.6em; color: #333; font-weight: 800; margin-bottom: 8px; display: block; line-height: 1.3; }
+  .res-en { font-size: 1.1em; color: #777; font-style: italic; display: block; }
+  .highlight { color: #e65100; }
+  .highlight-loc { color: #2e7d32; }
+  .highlight-time { color: #c0392b; }
+
+  /* --- 5. FLASHCARDS CSS --- */
+  .flashcard-scene {
+    width: 300px;
+    height: 220px;
+    margin: 20px auto;
+    perspective: 1000px;
+    cursor: pointer;
+  }
+
+  .flashcard {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  }
+
+  .flashcard.is-flipped {
+    transform: rotateY(180deg);
+  }
+
+  .card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    border: 4px solid var(--accent);
+  }
+
+  .card-front {
+    background: white;
+    color: #333;
+  }
+
+  .card-back {
+    background: var(--flip-bg);
+    color: white;
+    transform: rotateY(180deg);
+    border-color: #d35400;
+  }
+
+  .fc-icon { font-size: 50px; margin-bottom: 10px; display: block;}
+  .fc-word { font-size: 28px; font-weight: 900; }
+  .fc-sub { font-size: 16px; margin-top: 5px; opacity: 0.8; font-weight: bold; }
+  .fc-hint { font-size: 12px; color: #999; margin-top: auto; font-style: italic; }
+
+  .audio-btn-small {
+    background: #eee;
+    color: #333;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .audio-btn-small:hover { background: var(--accent2); color: #e65100; transform: scale(1.1); }
+
+  .nav-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+  }
+
+  .next-btn {
+    background: #333;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: 0.2s;
+  }
+  .next-btn:hover { transform: translateY(-3px); background: #000; }
+  
+  /* Mode Controls */
+  .mode-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  .mode-btn {
+    background: #fff;
+    border: 2px solid var(--accent2);
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    color: #666;
+    transition: 0.2s;
+    font-family: inherit;
+  }
+  .mode-btn:hover { background: var(--hover); }
+  .mode-btn.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  .mode-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🇪🇸 Mi Rutina</h1>
+  <p>Practice: Numbers, Time (12h) & Actions</p>
+</header>
+
+<div class="container">
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="switchTab('numeros')">1. Numbers</button>
+    <button class="tab-btn" onclick="switchTab('hora')">2. The Time</button>
+    <button class="tab-btn" onclick="switchTab('rutina')">3. Vocabulary</button>
+    <button class="tab-btn" onclick="switchTab('practica')">4. Practice Game</button>
+    <button class="tab-btn" onclick="switchTab('flashcards')">5. Flashcards</button>
+    <button class="tab-btn" onclick="switchTab('parrafo')">6. Story Time</button>
+    <button class="tab-btn" onclick="switchTab('repaso')">7. Greetings & Feelings</button>
+  </div>
+
+  <div id="numeros" class="section-content active">
+    <div class="card">
+      <h2>🔢 Los Números (Click to Listen)</h2>
+      <div class="number-grid" id="numberGrid"></div>
+    </div>
+    <div class="card">
+      <h2>🎂 La Edad (Age)</h2>
+      <div class="rule-box" style="text-align: center; font-size: 1.2em;">
+        <p onclick="speak('¿Cuántos años tienes?')" style="cursor: pointer; padding-bottom: 10px; border-bottom: 1px dashed #FFD8A8;">🗣️ <strong>¿Cuántos años tienes?</strong> (How old are you?)</p>
+        <p onclick="speak('Tengo catorce años.')" style="cursor: pointer;">🗣️ Para responder (To answer):<br>
+        <strong>Tengo</strong> [número] <strong>años.</strong><br>
+        <span style="font-size: 0.8em; color: #666;">(I am ... years old. / Literally: I have ... years.)</span></p>
+        <p style="color: #e65100; font-weight: bold;">Ejemplo: Tengo 14 años. (I am 14 years old.)</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="hora" class="section-content">
+    <div class="card">
+      <h2>⏰ La Hora (The Time)</h2>
+      <div class="time-layout">
+        <div class="clock-face">🕒</div>
+        <div class="rule-box">
+          <p onclick="speak('¿Qué hora es?')">🗣️ <strong>¿Qué hora es?</strong> (What time is it?)</p>
+          <hr style="border:1px solid #FFD8A8">
+          
+          <div class="grammar-note">
+            <strong>💡 The Magic Rule: Hours & Minutes!</strong><br><br>
+            
+            <strong>Step 1: The Hour</strong>
+            <ul>
+              <li><strong>1 is special!</strong> If the hour is 1 (like 1:00, 1:15, or 1:30), we always start with <strong>Es la una...</strong><br>
+              <em>Examples: Es la una. (1:00) | Es la una y diez. (1:10)</em></li><br>
+              <li><strong>For EVERYTHING else (2 to 12):</strong> We start with <strong>Son las...</strong><br>
+              <em>Examples: Son las dos. (2:00) | Son las ocho. (8:00)</em></li>
+            </ul>
+            <br>
+
+            <strong>Step 2: Adding the Minutes ➕</strong><br>
+            To add minutes, just use the word <strong>"y"</strong> (which sounds like "ee" and means "and").
+            <ul>
+              <li><strong>For normal minutes:</strong> Just say <strong>"y" + the number</strong>.<br>
+              <em>Example: 4:05 ➡️ Son las cuatro <strong>y cinco</strong>.</em><br>
+              <em>Example: 8:20 ➡️ Son las ocho <strong>y veinte</strong>.</em></li>
+            </ul>
+            <br>
+
+            <strong>Step 3: Special Minute Words 🌟</strong><br>
+            Instead of saying the numbers 15 or 30, Spanish has two fun shortcut words!
+            <ul>
+              <li><strong>For 15 minutes:</strong> Use <strong>y cuarto</strong> (a quarter).<br>
+              <em>Example: 1:15 ➡️ Es la una <strong>y cuarto</strong>.</em></li><br>
+              <li><strong>For 30 minutes:</strong> Use <strong>y media</strong> (half past).<br>
+              <em>Example: 5:30 ➡️ Son las cinco <strong>y media</strong>.</em></li>
+            </ul>
+          </div>
+
+          <hr style="border:1px solid #FFD8A8">
+          <p onclick="speak('y cuarto')">🍰 :15 = <strong>y cuarto</strong> (quarter)</p>
+          <p onclick="speak('y media')">🌓 :30 = <strong>y media</strong> (half)</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="text-align: center;">
+      <h2>🎯 Práctica: ¿Qué hora es?</h2>
+      <p style="color:#666; margin-bottom: 5px;">Test your knowledge! Generate a random time and guess how to say it.</p>
+      
+      <div class="quiz-time-display" id="quizTimeDisplay">--:--</div>
+      <div class="quiz-answer" id="quizAnswerDisplay">Es la una y media</div>
+
+      <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+        <button class="mode-btn active" onclick="generateRandomQuizTime()">🔄 Random Time</button>
+        <button class="mode-btn" id="btnShowQuizAns" onclick="showQuizAnswer()" disabled>👀 Show Answer & Listen</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="rutina" class="section-content">
+    <div class="card">
+      <h2>📅 Mis Actividades (All Vocabulary)</h2>
+      <p style="color:#666; margin-bottom:15px; font-style:italic;">Combined list of daily routine & study verbs.</p>
+
+      <div class="grammar-note" style="margin-bottom: 25px;">
+        <strong>💡 Verb Conjugation (Different Pronouns = Different Verb Forms)</strong><br>
+        In Spanish, verbs change their endings depending on <em>who</em> is doing the action. For example, "I work" is <em>trabaj<strong>o</strong></em>, "You work" is <em>trabaj<strong>as</strong></em>, and "He/She works" is <em>trabaj<strong>a</strong></em>. Notice how the end of the word changes to match the pronoun!
+      </div>
+
+      <div class="grammar-note" style="margin-bottom: 25px; border-color: #4CAF50; background-color: #E8F5E9;">
+        <h3 style="color: #2E7D32; margin-top: 0; margin-bottom: 10px;">📚 The 6 Subject Pronouns & Present Indicative Conjugation</h3>
+        <p style="margin-top: 0; color: #333;">
+          In Spanish, there are <strong>6 main categories of subject pronouns</strong>. In the present indicative tense (<em>Presente de Indicativo</em>), verbs change their forms (conjugate) into 6 different ways to match these pronouns.
+        </p>
+        <p style="color: #333;">
+          Here is an example using two essential verbs, <strong>Ser</strong> and <strong>Estar</strong>. Based on your grammar rules, both mean "to be", but they have different uses (<em>Ser</em> is for permanent attributes and origins, while <em>Estar</em> is for temporary states and locations):
+        </p>
+        
+        <div style="overflow-x: auto;">
+          <table style="width: 100%; border-collapse: collapse; margin-top: 10px; background: white; border-radius: 8px; overflow: hidden; font-size: 0.9em; text-align: left; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+            <thead>
+              <tr style="background: #4CAF50; color: white;">
+                <th style="padding: 10px; border-bottom: 2px solid #388E3C;">Pronouns (English)</th>
+                <th style="padding: 10px; border-bottom: 2px solid #388E3C;">Ser (To be)</th>
+                <th style="padding: 10px; border-bottom: 2px solid #388E3C;">Estar (To be)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom: 1px solid #eee;">
+                <td style="padding: 10px;"><strong>Yo</strong> (I)</td>
+                <td style="padding: 10px; color: #e65100; font-weight: bold;">soy</td>
+                <td style="padding: 10px; color: #e65100; font-weight: bold;">estoy</td>
+              </tr>
+              <tr style="border-bottom: 1px solid #eee;">
+                <td style="padding: 10px;"><strong>Tú</strong> (You, singular informal)</td>
+                <td style="padding: 10px; color: #e65100; font-weight: bold;">eres</td>
+                <td style="padding: 10px; color: #e65100; font-weight: bold;">estás</td>
+              </tr>
+              <tr style="border-bottom: 1px solid #eee;">
+                <td style="padding: 10px;"><strong>Él / Ella / Usted</strong> (He / She / You, singular formal)</td>
+                <td style="padding: 10px; color: #e65100; font-weight: bold;">es</td>
+                <td style="padding: 10px; color: #e65100; font-weight: bold;">está</td>
+              </tr>
+              <tr style="border-bottom: 1px solid #eee;">
+                <td style="padding: 10px;"><strong>Nosotros / Nosotras</strong> (We)</td>
+                <td style="padding: 10px; color: #e65100; font-weight: bold;">somos</td>
+                <td style="padding: 10px; color: #e65100; font-weight: bold;">estamos</td>
+              </tr>
+              <tr style="border-bottom: 1px solid #eee;">
+                <td style="padding: 10px;"><strong>Vosotros / Vosotras</strong> (You all, plural informal Spain)</td>
+                <td style="padding: 10px; color: #e65100; font-weight: bold;">sois</td>
+                <td style="padding: 10px; color: #e65100; font-weight: bold;">estáis</td>
+              </tr>
+              <tr>
+                <td style="padding: 10px;"><strong>Ellos / Ellas / Ustedes</strong> (They / You all, plural formal)</td>
+                <td style="padding: 10px; color: #e65100; font-weight: bold;">son</td>
+                <td style="padding: 10px; color: #e65100; font-weight: bold;">están</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <h3 style="color: #e65100;">🙋 Yo (I...)</h3>
+      <div class="vocab-grid" id="vocabGrid"></div>
+    </div>
+
+    <div class="card">
+      <h3 style="color: #e65100;">👉 Tú (You...)</h3>
+      <p style="color:#666; font-size: 0.9em; margin-bottom: 15px; font-style: italic;">* Using "almorzar" (almuerzas) for eat lunch.</p>
+      <div class="vocab-grid" id="vocabGridTu"></div>
+    </div>
+
+    <div class="card">
+      <h3 style="color: #e65100;">👤 Él / Ella / Usted (He / She / You formal...)</h3>
+      <div class="vocab-grid" id="vocabGridEl"></div>
+    </div>
+  </div>
+
+  <div id="practica" class="section-content">
+    <div class="card">
+      <h2>🎮 Sentence Builder</h2>
+      <p style="color:#666; margin-bottom:20px;">
+        Structure: <strong>Action + [Location] + Time (12h)</strong>
+      </p>
+      
+      <div class="builder-area">
+        
+        <div class="control-group">
+          <label class="control-label">1. La Actividad (Activity):</label>
+          <select id="actSelect">
+            <option value="" disabled selected>-- Select Activity --</option>
+            <option value="Me levanto">Me levanto (I get up)</option>
+            <option value="Me lavo la cara">Me lavo la cara (I wash my face)</option>
+            <option value="Me cepillo los dientes">Me cepillo los dientes (I brush my teeth)</option>
+            <option value="Me ducho">Me ducho (I shower)</option>
+            <option value="Me peino">Me peino (I comb my hair)</option>
+            <option value="Desayuno">Desayuno (I have breakfast)</option>
+            <option value="Voy a la escuela">Voy a la escuela (I go to school)</option>
+            <option value="Hago la tarea">Hago la tarea (I do homework)</option>
+            <option value="Juego">Juego (I play)</option>
+            <option value="Veo la tele">Veo la tele (I watch TV)</option>
+            <option value="Ceno">Ceno (I have dinner)</option>
+            <option value="Me acuesto">Me acuesto (I go to bed)</option>
+            <option value="Trabajo">Trabajo (I work)</option>
+            <option value="Como">Como (I eat lunch)</option>
+            <option value="Dibujo">Dibujo (I draw)</option>
+            <option value="Estudio">Estudio (I study)</option>
+            <option value="Estudio español">Estudio español (I study Spanish)</option>
+            <option value="Estudio inglés">Estudio inglés (I study English)</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label class="control-label">2. El Lugar (Location) <span style="font-weight:normal; font-size:0.8em; color:#777;">*Optional</span>:</label>
+          <select id="locSelect">
+            <option value="" selected>-- Sin lugar (No location) --</option>
+            <option value="en casa">En casa (At home)</option>
+            <option value="en la escuela">En la escuela (At school)</option>
+            <option value="en la oficina">En la oficina (At the office)</option>
+            <option value="en la biblioteca">En la biblioteca (At the library)</option>
+            <option value="en el parque">En el parque (In the park)</option>
+            <option value="en el restaurante">En el restaurante (At the restaurant)</option>
+            <option value="en mi habitación">En mi habitación (In my room)</option>
+            <option value="en el baño">En el baño (In the bathroom)</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label class="control-label">3. La Hora (Time):</label>
+          <div class="time-display-box">
+            <span id="timeDisplay">12:00</span>
+            <span id="periodDisplay" class="period-hint">del mediodía</span>
+          </div>
+          
+          <div style="display:flex; align-items:center; gap:10px;">
+              <input type="range" id="timeSlider" min="0" max="23" value="12" step="1" oninput="updateTimeDisplay()" style="flex-grow:1;">
+              <select id="minSelect" onchange="updateTimeDisplay()" style="width: auto; padding: 8px; border-radius:10px; border:2px solid #FFD8A8; font-weight:bold; color:#e65100;">
+                  <option value="00">:00</option>
+                  <option value="05">:05</option>
+                  <option value="10">:10</option>
+                  <option value="15">:15 (y cuarto)</option>
+                  <option value="20">:20</option>
+                  <option value="30">:30 (y media)</option>
+                  <option value="40">:40</option>
+              </select>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; font-size:12px; color:#aaa; font-weight:bold; margin-top:5px;">
+            <span>00:00</span>
+            <span>12:00</span>
+            <span>23:00</span>
+          </div>
+        </div>
+
+        <button class="action-btn" onclick="buildAndSpeak()">🔊 Generate & Speak</button>
+
+        <div id="result-box">
+          <span id="resSp" class="res-sp"></span>
+          <span id="resEn" class="res-en"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="flashcards" class="section-content">
+    <div class="card" style="text-align:center;">
+      <h2>🧠 Flashcards Review</h2>
+      
+      <div class="mode-controls">
+        <button id="btnRnd" class="mode-btn active" onclick="setMode('random')">🔀 Random</button>
+        <button id="btnSeq" class="mode-btn" onclick="setMode('sequential')">🔢 Sequential</button>
+      </div>
+
+      <p style="margin-bottom:20px; color:#666; font-size:0.9em;">
+        Tap card to flip. Tap speaker to listen.
+      </p>
+
+      <div class="flashcard-scene" onclick="flipCard()">
+        <div class="flashcard" id="flashcardElement">
+          
+          <div class="card-face card-front">
+            <button class="audio-btn-small" onclick="event.stopPropagation(); playCurrentCard()">🔊</button>
+            <span class="fc-icon" id="fcIcon">❓</span>
+            <span class="fc-word" id="fcEs">Hola</span>
+            <span class="fc-hint">Tap to flip ↻</span>
+          </div>
+          
+          <div class="card-face card-back">
+            <span class="fc-word" id="fcEn">Hello</span>
+            <span class="fc-sub">English</span>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="nav-controls">
+        <button class="next-btn" onclick="nextCard()">Next Card ➔</button>
+      </div>
+      
+      <p style="margin-top:20px; font-size:12px; color:#aaa;">
+        Card <span id="cardCount">1</span> / <span id="totalCards">0</span>
+      </p>
+    </div>
+  </div>
+
+  <div id="parrafo" class="section-content">
+    <div class="card" style="text-align:center;">
+      <h2>📖 Mi Día (Paragraph Dictation)</h2>
+      <p style="color:#666; margin-bottom:20px; font-size:0.9em;">
+        Read the English sentence and translate it to Spanish! Tap the card to check your answer.
+      </p>
+
+      <div class="flashcard-scene" onclick="flipStoryCard()">
+        <div class="flashcard" id="storyCardElement">
+          
+          <div class="card-face card-front">
+            <span class="fc-icon" style="font-size: 35px;">🇺🇸</span>
+            <span class="fc-word" id="storyEn" style="font-size: 18px; padding: 0 10px;">I get up at 6:00 in the morning.</span>
+            <span class="fc-hint">Tap to see Spanish ↻</span>
+          </div>
+          
+          <div class="card-face card-back" style="background:#2e7d32; border-color:#1b5e20;">
+            <button class="audio-btn-small" onclick="event.stopPropagation(); playStoryAudio()" style="color:#2e7d32;">🔊</button>
+            <span class="fc-word" id="storyEs" style="font-size: 18px; padding: 0 10px;">Me levanto a las seis de la mañana.</span>
+            <span class="fc-sub" style="color: #a5d6a7;">Español</span>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="nav-controls">
+        <button class="mode-btn" onclick="prevStorySentence()">⬅️ Back</button>
+        <button class="next-btn" onclick="nextStorySentence()">Next Sentence ➔</button>
+      </div>
+      
+      <p style="margin-top:20px; font-size:12px; color:#aaa;">
+        Sentence <span id="storyCount">1</span> / <span id="totalStory">10</span>
+      </p>
+    </div>
+  </div>
+
+  <div id="repaso" class="section-content">
+    <div class="card">
+      <h2>👋 Saludos Comunes (Greetings)</h2>
+      <div class="vocab-grid">
+        <div class="vocab-card" onclick="speak('Hola')">
+          <span class="emoji">👋</span>
+          <span class="es-text">Hola</span>
+          <span class="en-text">Hello</span>
+        </div>
+        <div class="vocab-card" onclick="speak('Buenos días')">
+          <span class="emoji">🌅</span>
+          <span class="es-text">Buenos días</span>
+          <span class="en-text">Good morning</span>
+        </div>
+        <div class="vocab-card" onclick="speak('Buenas tardes')">
+          <span class="emoji">🌇</span>
+          <span class="es-text">Buenas tardes</span>
+          <span class="en-text">Good afternoon</span>
+        </div>
+        <div class="vocab-card" onclick="speak('Buenas noches')">
+          <span class="emoji">🌃</span>
+          <span class="es-text">Buenas noches</span>
+          <span class="en-text">Good evening / night</span>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>🎭 ¿Cómo estás? (How are you?)</h2>
+      <p style="color:#666; margin-bottom:15px; font-style:italic;">Expressing your feelings and states.</p>
+      
+      <div class="grammar-note" style="margin-bottom: 20px;">
+        <strong>💡 Pronoun Drop (Yo & Tú)</strong><br>
+        In Spanish, you don't always need to say "Yo" (I) or "Tú" (You) because the verb itself tells us who is doing the action! "Estoy" already means "I am", and "Estás" already means "You are".
+      </div>
+
+      <h3 style="color: #e65100;">Yo (I am...)</h3>
+      <div class="vocab-grid">
+        <div class="vocab-card" onclick="speak('Estoy bien')">
+          <span class="emoji">😊</span>
+          <span class="es-text">Estoy bien</span>
+          <span class="en-text">I am fine / good</span>
+        </div>
+        <div class="vocab-card" onclick="speak('Estoy feliz')">
+          <span class="emoji">😄</span>
+          <span class="es-text">Estoy feliz</span>
+          <span class="en-text">I am happy</span>
+        </div>
+        <div class="vocab-card" onclick="speak('Estoy triste')">
+          <span class="emoji">😢</span>
+          <span class="es-text">Estoy triste</span>
+          <span class="en-text">I am sad</span>
+        </div>
+        <div class="vocab-card" onclick="speak('Estoy cansada')">
+          <span class="emoji">🥱</span>
+          <span class="es-text">Estoy cansada(o)</span>
+          <span class="en-text">I am tired (boy: cansado)</span>
+        </div>
+      </div>
+
+      <h3 style="color: #e65100; margin-top: 25px;">Tú (You are...)</h3>
+      <div class="vocab-grid">
+        <div class="vocab-card" onclick="speak('Estás bien')">
+          <span class="emoji">😊</span>
+          <span class="es-text">Estás bien</span>
+          <span class="en-text">You are fine / good</span>
+        </div>
+        <div class="vocab-card" onclick="speak('Estás feliz')">
+          <span class="emoji">😄</span>
+          <span class="es-text">Estás feliz</span>
+          <span class="en-text">You are happy</span>
+        </div>
+        <div class="vocab-card" onclick="speak('Estás triste')">
+          <span class="emoji">😢</span>
+          <span class="es-text">Estás triste</span>
+          <span class="en-text">You are sad</span>
+        </div>
+        <div class="vocab-card" onclick="speak('Estás cansada')">
+          <span class="emoji">🥱</span>
+          <span class="es-text">Estás cansada(o)</span>
+          <span class="en-text">You are tired (boy: cansado)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  /* --- DATA --- */
+  const numbersEs = [
+    "cero","uno","dos","tres","cuatro","cinco","seis","siete","ocho","nueve","diez",
+    "once","doce","trece","catorce","quince","dieciséis","diecisiete","dieciocho","diecinueve","veinte",
+    "veintiuno","veintidós","veintitrés","veinticuatro","veinticinco","veintiséis","veintisiete","veintiocho","veintinueve",
+    "treinta", "treinta y uno", "treinta y dos", "treinta y tres", "treinta y cuatro", "treinta y cinco", "treinta y seis", "treinta y siete", "treinta y ocho", "treinta y nueve",
+    "cuarenta", "cuarenta y uno", "cuarenta y dos", "cuarenta y tres", "cuarenta y cuatro", "cuarenta y cinco", "cuarenta y seis", "cuarenta y siete", "cuarenta y ocho", "cuarenta y nueve",
+    "cincuenta", "cincuenta y uno", "cincuenta y dos", "cincuenta y tres", "cincuenta y cuatro", "cincuenta y cinco", "cincuenta y seis", "cincuenta y siete", "cincuenta y ocho", "cincuenta y nueve",
+    "sesenta", "sesenta y uno", "sesenta y dos", "sesenta y tres", "sesenta y cuatro", "sesenta y cinco", "sesenta y seis", "sesenta y siete", "sesenta y ocho", "sesenta y nueve",
+    "setenta", "setenta y uno", "setenta y dos", "setenta y tres", "setenta y cuatro", "setenta y cinco", "setenta y seis", "setenta y siete", "setenta y ocho", "setenta y nueve",
+    "ochenta", "ochenta y uno", "ochenta y dos", "ochenta y tres", "ochenta y cuatro", "ochenta y cinco", "ochenta y seis", "ochenta y siete", "ochenta y ocho", "ochenta y nueve",
+    "noventa", "noventa y uno", "noventa y dos", "noventa y tres", "noventa y cuatro", "noventa y cinco", "noventa y seis", "noventa y siete", "noventa y ocho", "noventa y nueve"
+  ];
+  
+  const numbersEn = [
+    "zero","one","two","three","four","five","six","seven","eight","nine","ten",
+    "eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen","twenty",
+    "twenty-one","twenty-two","twenty-three","twenty-four","twenty-five","twenty-six","twenty-seven","twenty-eight","twenty-nine",
+    "thirty", "thirty-one", "thirty-two", "thirty-three", "thirty-four", "thirty-five", "thirty-six", "thirty-seven", "thirty-eight", "thirty-nine",
+    "forty", "forty-one", "forty-two", "forty-three", "forty-four", "forty-five", "forty-six", "forty-seven", "forty-eight", "forty-nine",
+    "fifty", "fifty-one", "fifty-two", "fifty-three", "fifty-four", "fifty-five", "fifty-six", "fifty-seven", "fifty-eight", "fifty-nine",
+    "sixty", "sixty-one", "sixty-two", "sixty-three", "sixty-four", "sixty-five", "sixty-six", "sixty-seven", "sixty-eight", "sixty-nine",
+    "seventy", "seventy-one", "seventy-two", "seventy-three", "seventy-four", "seventy-five", "seventy-six", "seventy-seven", "seventy-eight", "seventy-nine",
+    "eighty", "eighty-one", "eighty-two", "eighty-three", "eighty-four", "eighty-five", "eighty-six", "eighty-seven", "eighty-eight", "eighty-nine",
+    "ninety", "ninety-one", "ninety-two", "ninety-three", "ninety-four", "ninety-five", "ninety-six", "ninety-seven", "ninety-eight", "ninety-nine"
+  ];
+
+  const vocabList = [
+    { es: "Me levanto", en: "I get up", icon: "🛌" },
+    { es: "Me lavo la cara", en: "I wash my face", icon: "🧼" },
+    { es: "Me cepillo los dientes", en: "I brush my teeth", icon: "🪥" },
+    { es: "Me ducho", en: "I shower", icon: "🚿" },
+    { es: "Me peino", en: "I comb my hair", icon: "💇" },
+    { es: "Desayuno", en: "I have breakfast", icon: "🍳" },
+    { es: "Como/Almuerzo", en: "I eat lunch", icon: "🥘" },
+    { es: "Ceno", en: "I have dinner", icon: "🍲" },
+    { es: "Voy a la escuela", en: "I go to school", icon: "🎒" },
+    { es: "Hago la tarea", en: "I do homework", icon: "📝" },
+    { es: "Trabajo", en: "I work", icon: "💼" },
+    { es: "Estudio", en: "I study", icon: "📖" },
+    { es: "Estudio español", en: "I study Spanish", icon: "🇪🇸" },
+    { es: "Estudio inglés", en: "I study English", icon: "🇬🇧" },
+    { es: "Juego", en: "I play", icon: "⚽" },
+    { es: "Dibujo", en: "I draw", icon: "🎨" },
+    { es: "Veo la tele", en: "I watch TV", icon: "📺" },
+    { es: "Me acuesto", en: "I go to bed", icon: "💤" }
+  ];
+
+  const vocabListTu = [
+    { es: "Te levantas", en: "You get up", icon: "🛌" },
+    { es: "Te lavas la cara", en: "You wash your face", icon: "🧼" },
+    { es: "Te cepillas los dientes", en: "You brush your teeth", icon: "🪥" },
+    { es: "Te duchas", en: "You shower", icon: "🚿" },
+    { es: "Te peinas", en: "You comb your hair", icon: "💇" },
+    { es: "Desayunas", en: "You have breakfast", icon: "🍳" },
+    { es: "Comes/Almuerzas", en: "You eat lunch", icon: "🥘" },
+    { es: "Cenas", en: "You have dinner", icon: "🍲" },
+    { es: "Vas a la escuela", en: "You go to school", icon: "🎒" },
+    { es: "Haces la tarea", en: "You do homework", icon: "📝" },
+    { es: "Trabajas", en: "You work", icon: "💼" },
+    { es: "Estudias", en: "You study", icon: "📖" },
+    { es: "Estudias español", en: "You study Spanish", icon: "🇪🇸" },
+    { es: "Estudias inglés", en: "You study English", icon: "🇬🇧" },
+    { es: "Juegas", en: "You play", icon: "⚽" },
+    { es: "Dibujas", en: "You draw", icon: "🎨" },
+    { es: "Ves la tele", en: "You watch TV", icon: "📺" },
+    { es: "Te acuestas", en: "You go to bed", icon: "💤" }
+  ];
+
+  const vocabListEl = [
+    { es: "Se levanta", en: "He/She gets up", icon: "🛌" },
+    { es: "Se lava la cara", en: "He/She washes face", icon: "🧼" },
+    { es: "Se cepilla los dientes", en: "He/She brushes teeth", icon: "🪥" },
+    { es: "Se ducha", en: "He/She showers", icon: "🚿" },
+    { es: "Se peina", en: "He/She combs hair", icon: "💇" },
+    { es: "Desayuna", en: "He/She has breakfast", icon: "🍳" },
+    { es: "Come/Almuerza", en: "He/She eats lunch", icon: "🥘" },
+    { es: "Cena", en: "He/She has dinner", icon: "🍲" },
+    { es: "Va a la escuela", en: "He/She goes to school", icon: "🎒" },
+    { es: "Hace la tarea", en: "He/She does homework", icon: "📝" },
+    { es: "Trabaja", en: "He/She works", icon: "💼" },
+    { es: "Estudia", en: "He/She studies", icon: "📖" },
+    { es: "Estudia español", en: "He/She studies Spanish", icon: "🇪🇸" },
+    { es: "Estudia inglés", en: "He/She studies English", icon: "🇬🇧" },
+    { es: "Juega", en: "He/She plays", icon: "⚽" },
+    { es: "Dibuja", en: "He/She draws", icon: "🎨" },
+    { es: "Ve la tele", en: "He/She watches TV", icon: "📺" },
+    { es: "Se acuesta", en: "He/She goes to bed", icon: "💤" }
+  ];
+
+  const locationData = [
+    { es: "en casa", en: "at home", icon: "🏠" },
+    { es: "en la escuela", en: "at school", icon: "🏫" },
+    { es: "en la oficina", en: "at the office", icon: "🏢" },
+    { es: "en la biblioteca", en: "at the library", icon: "📚" },
+    { es: "en el parque", en: "in the park", icon: "🌳" },
+    { es: "en el restaurante", en: "at the restaurant", icon: "🍽️" },
+    { es: "en mi habitación", en: "in my room", icon: "🛏️" },
+    { es: "en el baño", en: "in the bathroom", icon: "🛁" }
+  ];
+
+  const timeData = [
+    { es: "y cuarto", en: "quarter past", icon: "🍰" },
+    { es: "y media", en: "half past", icon: "🌓" },
+    { es: "Mediodía", en: "Noon", icon: "☀️" },
+    { es: "Medianoche", en: "Midnight", icon: "🌙" },
+    { es: "¿Qué hora es?", en: "What time is it?", icon: "❓" }
+  ];
+
+  /* --- GLOBAL VARIABLES --- */
+  let masterDeck = [];  
+  let workingDeck = []; 
+  let currentCardIndex = 0;
+  let currentMode = 'random'; 
+  let currentQuizAnswerText = ""; 
+
+  /* --- INITIALIZATION --- */
+  window.onload = function() {
+    renderNumbers();
+    renderVocab();
+    renderVocabTu();
+    renderVocabEl();
+    updateTimeDisplay(); 
+    initFlashcards(); 
+    generateRandomQuizTime();
+    initStory(); 
+  };
+
+  /* --- RENDER FUNCTIONS --- */
+  function renderNumbers() {
+    const grid = document.getElementById('numberGrid');
+    numbersEs.forEach((num, index) => {
+      let div = document.createElement('div');
+      div.className = 'num-card';
+      div.onclick = () => speak(num);
+      div.innerHTML = `
+        <span class="num-digit">${index}</span>
+        <span class="num-word">${num}</span>
+      `;
+      grid.appendChild(div);
+    });
+  }
+
+  function renderVocab() {
+    const grid = document.getElementById('vocabGrid');
+    vocabList.forEach(item => {
+      let div = document.createElement('div');
+      div.className = 'vocab-card';
+      div.onclick = () => speak(item.es);
+      div.innerHTML = `
+        <span class="emoji">${item.icon}</span>
+        <span class="es-text">${item.es}</span>
+        <span class="en-text">${item.en}</span>
+      `;
+      grid.appendChild(div);
+    });
+  }
+
+  function renderVocabTu() {
+    const grid = document.getElementById('vocabGridTu');
+    vocabListTu.forEach(item => {
+      let div = document.createElement('div');
+      div.className = 'vocab-card';
+      div.onclick = () => speak(item.es);
+      div.innerHTML = `
+        <span class="emoji">${item.icon}</span>
+        <span class="es-text">${item.es}</span>
+        <span class="en-text">${item.en}</span>
+      `;
+      grid.appendChild(div);
+    });
+  }
+
+  function renderVocabEl() {
+    const grid = document.getElementById('vocabGridEl');
+    vocabListEl.forEach(item => {
+      let div = document.createElement('div');
+      div.className = 'vocab-card';
+      div.onclick = () => speak(item.es);
+      div.innerHTML = `
+        <span class="emoji">${item.icon}</span>
+        <span class="es-text">${item.es}</span>
+        <span class="en-text">${item.en}</span>
+      `;
+      grid.appendChild(div);
+    });
+  }
+
+  /* --- TIME QUIZ LOGIC --- */
+  function generateRandomQuizTime() {
+    document.getElementById("quizAnswerDisplay").style.display = "none";
+    document.getElementById("btnShowQuizAns").disabled = false;
+
+    const hours = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+    const minutes = ["00", "05", "10", "15", "20", "30", "40"];
+    
+    const h = hours[Math.floor(Math.random() * hours.length)];
+    const m = minutes[Math.floor(Math.random() * minutes.length)];
+    
+    document.getElementById("quizTimeDisplay").innerText = h + ":" + m;
+
+    let hourStr = h === 1 ? "Es la una" : "Son las " + numbersEs[h];
+    
+    let minStr = "";
+    if (m === "00") minStr = "";
+    else if (m === "15") minStr = " y cuarto";
+    else if (m === "30") minStr = " y media";
+    else minStr = " y " + numbersEs[parseInt(m)];
+    
+    currentQuizAnswerText = hourStr + minStr;
+  }
+
+  function showQuizAnswer() {
+    const ansDiv = document.getElementById("quizAnswerDisplay");
+    ansDiv.innerText = currentQuizAnswerText;
+    ansDiv.style.display = "block";
+    speak(currentQuizAnswerText);
+  }
+
+  /* --- FLASHCARD LOGIC --- */
+  function initFlashcards() {
+    masterDeck = [];
+    numbersEs.forEach((es, i) => { masterDeck.push({ es: es, en: numbersEn[i] + ` (${i})`, icon: "#️⃣" }); });
+    vocabList.forEach(v => masterDeck.push(v));
+    locationData.forEach(l => masterDeck.push(l));
+    timeData.forEach(t => masterDeck.push(t));
+    setMode('random');
+  }
+
+  function setMode(mode) {
+    currentMode = mode;
+    document.getElementById('btnRnd').classList.toggle('active', mode === 'random');
+    document.getElementById('btnSeq').classList.toggle('active', mode === 'sequential');
+    if (mode === 'random') {
+        workingDeck = [...masterDeck].sort(() => Math.random() - 0.5);
+    } else {
+        workingDeck = [...masterDeck];
+    }
+    document.getElementById('totalCards').innerText = workingDeck.length;
+    loadCard(0);
+  }
+
+  function loadCard(index) {
+    if(index >= workingDeck.length) index = 0; 
+    currentCardIndex = index;
+    const data = workingDeck[index];
+    document.getElementById('fcIcon').innerText = data.icon;
+    document.getElementById('fcEs').innerText = data.es;
+    document.getElementById('fcEn').innerText = data.en;
+    document.getElementById('cardCount').innerText = index + 1;
+    document.getElementById('flashcardElement').classList.remove('is-flipped');
+  }
+
+  function flipCard() {
+    document.getElementById('flashcardElement').classList.toggle('is-flipped');
+  }
+
+  function nextCard() {
+    const card = document.getElementById('flashcardElement');
+    if(card.classList.contains('is-flipped')) {
+        card.classList.remove('is-flipped');
+        setTimeout(() => { loadCard(currentCardIndex + 1); }, 300); 
+    } else {
+        loadCard(currentCardIndex + 1);
+    }
+  }
+
+  function playCurrentCard() {
+    speak(workingDeck[currentCardIndex].es);
+  }
+
+/* --- STORY DICTATION LOGIC --- */
+  const storyData = [
+    { en: "Hello, good evening. I am Chelsea.", es: "Hola, buenas noches. Soy Chelsea." },
+    { en: "I like drawing.", es: "Me gusta dibujar." },
+    { en: "I don't like reading books.", es: "No me gusta leer libros." },
+    { en: "I am 14 years old.", es: "Tengo catorce años." },
+    { en: "I get up at 6:00 in the morning.", es: "Me levanto a las seis de la mañana." },
+    { en: "I wash my face and brush my teeth.", es: "Me lavo la cara y me cepillo los dientes." },
+    { en: "I have breakfast at 7:15.", es: "Desayuno a las siete y cuarto." },
+    { en: "I go to school at 8:00.", es: "Voy a la escuela a las ocho." },
+    { en: "I eat lunch at 12:30.", es: "Como a las doce y media." },
+    { en: "I take a shower at 5:00 in the afternoon.", es: "Me ducho a las cinco de la tarde." },
+    { en: "I do homework at 6:00.", es: "Hago la tarea a las seis." },
+    { en: "I have dinner at 7:00 at home.", es: "Ceno a las siete en casa." },
+    { en: "I study Spanish at 8:15.", es: "Estudio español a las ocho y cuarto." },
+    { en: "I go to bed at 10:30 at night.", es: "Me acuesto a las diez y media de la noche." }
+  ];
+
+  let currentStoryIndex = 0;
+
+  function initStory() {
+    document.getElementById('totalStory').innerText = storyData.length;
+    loadStorySentence(0);
+  }
+
+  function loadStorySentence(index) {
+    if (index >= storyData.length) index = 0;
+    if (index < 0) index = storyData.length - 1;
+    currentStoryIndex = index;
+    
+    document.getElementById('storyEn').innerText = storyData[index].en;
+    document.getElementById('storyEs').innerText = storyData[index].es;
+    document.getElementById('storyCount').innerText = index + 1;
+    document.getElementById('storyCardElement').classList.remove('is-flipped');
+  }
+
+  function flipStoryCard() {
+    document.getElementById('storyCardElement').classList.toggle('is-flipped');
+  }
+
+  function nextStorySentence() {
+    const card = document.getElementById('storyCardElement');
+    if(card.classList.contains('is-flipped')) {
+        card.classList.remove('is-flipped');
+        setTimeout(() => { loadStorySentence(currentStoryIndex + 1); }, 300); 
+    } else {
+        loadStorySentence(currentStoryIndex + 1);
+    }
+  }
+
+  function prevStorySentence() {
+    const card = document.getElementById('storyCardElement');
+    if(card.classList.contains('is-flipped')) {
+        card.classList.remove('is-flipped');
+        setTimeout(() => { loadStorySentence(currentStoryIndex - 1); }, 300); 
+    } else {
+        loadStorySentence(currentStoryIndex - 1);
+    }
+  }
+
+  function playStoryAudio() {
+    speak(storyData[currentStoryIndex].es);
+  }
+
+  /* --- TTS FUNCTION --- */
+  function speak(text) {
+    if ('speechSynthesis' in window) {
+      const cleanText = text.replace(/<[^>]*>/g, '');
+      window.speechSynthesis.cancel();
+      let utterance = new SpeechSynthesisUtterance(cleanText);
+      utterance.lang = 'es-ES';
+      utterance.rate = 0.9;
+      window.speechSynthesis.speak(utterance);
+    } else {
+      console.log("TTS not supported");
+    }
+  }
+
+  /* --- TAB SWITCHING --- */
+  function switchTab(tabId) {
+    document.querySelectorAll('.section-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    const buttons = document.querySelectorAll('.tab-btn');
+    const map = { 'numeros': 0, 'hora': 1, 'rutina': 2, 'practica': 3, 'flashcards': 4, 'parrafo': 5, 'repaso': 6 };
+    if(buttons[map[tabId]]) buttons[map[tabId]].classList.add('active');
+  }
+
+  /* --- TIME LOGIC (12h + Minutes) --- */
+  function getTimeInfo() {
+    const rawHour = parseInt(document.getElementById('timeSlider').value);
+    const minute = document.getElementById('minSelect').value;
+    
+    let displayHour = rawHour; 
+    let periodText = "";
+
+    if (rawHour > 12) {
+        displayHour = rawHour - 12;
+    } else if (rawHour === 0) {
+        displayHour = 12; 
+    }
+
+    if (rawHour === 12) {
+        periodText = "del mediodía"; 
+    } else if (rawHour === 0 || rawHour <= 5) {
+        periodText = "de la madrugada";
+    } else if (rawHour >= 6 && rawHour < 12) {
+        periodText = "de la mañana";
+    } else if (rawHour >= 13 && rawHour <= 20) {
+        periodText = "de la tarde";
+    } else { 
+        periodText = "de la noche";
+    }
+    
+    let periodEn = "";
+    if (rawHour === 0 || rawHour <= 5) periodEn = "early morning";
+    else if (rawHour >= 6 && rawHour < 12) periodEn = "in the morning";
+    else if (rawHour >= 13 && rawHour <= 20) periodEn = "in the afternoon";
+    else if (rawHour >= 21) periodEn = "at night";
+
+    return { rawHour, displayHour, periodText, periodEn, minute };
+  }
+
+  function updateTimeDisplay() {
+    const { rawHour, displayHour, periodText, minute } = getTimeInfo();
+    let displayTime = displayHour + ":" + minute;
+    document.getElementById('timeDisplay').innerText = displayTime;
+    document.getElementById('periodDisplay').innerText = periodText;
+  }
+
+  /* --- BUILD & SPEAK --- */
+  function buildAndSpeak() {
+    const act = document.getElementById('actSelect').value;
+    const loc = document.getElementById('locSelect').value; 
+    
+    if(!act) { alert("Please select an Activity!"); return; }
+
+    const getEngAct = (val) => {
+        const item = vocabList.find(v => v.es === val);
+        return item ? item.en : "I do action";
+    };
+    
+    const locMap = {
+        "en casa": "at home", "en la escuela": "at school", "en la oficina": "at the office",
+        "en la biblioteca": "at the library", "en el parque": "in the park",
+        "en el restaurante": "at the restaurant", "en mi habitación": "in my room", "en el baño": "in the bathroom"
+    };
+
+    const actEn = getEngAct(act);
+    const locEn = locMap[loc] || "";
+    const { rawHour, displayHour, periodText, periodEn, minute } = getTimeInfo();
+
+    let locSpStr = loc ? ` <span class='highlight-loc'>${loc}</span>` : "";
+    let locSpText = loc ? ` ${loc}` : ""; 
+    let locEnStr = loc ? ` ${locEn}` : "";
+
+    let minSp = "";
+    if (minute === "15") minSp = " y cuarto";
+    else if (minute === "30") minSp = " y media";
+    else if (minute !== "00") minSp = " y " + numbersEs[parseInt(minute)];
+
+    let fullSp = "";
+    let speakSp = "";
+    
+    let hourWord = displayHour === 1 ? "a la una" : `a las ${displayHour}`;
+    
+    let timeVisual = "";
+    if (displayHour === 1 && minute === "00") {
+        timeVisual = "a la una";
+    } else if (displayHour === 1) {
+        timeVisual = `a la 1:${minute}`;
+    } else {
+        timeVisual = `a las ${displayHour}:${minute}`;
+    }
+    
+    let timeSpeak = hourWord + minSp;
+
+    fullSp = `<span class='highlight'>${act}</span>${locSpStr} <span class='highlight-time'>${timeVisual} ${periodText}</span>.`;
+    speakSp = `${act}${locSpText} ${timeSpeak} ${periodText}.`;
+
+    let fullEn = "";
+    let timeEn = "";
+
+    if (rawHour === 12) {
+        if (minute === "00") timeEn = "at noon";
+        else timeEn = `at 12:${minute} pm`; 
+        fullEn = `${actEn}${locEnStr} ${timeEn}.`;
+    } else {
+        if (displayHour === 1 && minute === "00") {
+            timeEn = "at one";
+        } else if (minute === "00") {
+            timeEn = `at ${displayHour}`; 
+        } else {
+            timeEn = `at ${displayHour}:${minute}`;
+        }
+        fullEn = `${actEn}${locEnStr} ${timeEn} ${periodEn}.`;
+    }
+
+    const resultBox = document.getElementById('result-box');
+    resultBox.style.display = "block";
+    
+    document.getElementById('resSp').innerHTML = fullSp;
+    document.getElementById('resEn').innerText = fullEn;
+
+    speak(speakSp);
+  }
+</script>
+
+</body>
+</html>
